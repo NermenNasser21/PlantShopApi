@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Category
+    public class Enums
     {
-        public int Id { get; set; } 
-        public string Name { get; set; }
-        public string Icon { get; set; }
+        public enum PaymentWays
+        {
+            Cash,
+            Wallet
+        }
     }
 }
