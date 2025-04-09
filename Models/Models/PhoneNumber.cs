@@ -10,6 +10,7 @@ namespace Models
     {
         public int Id { get; set; }
         public string UserId { set; get; }
+        public virtual User User {  get; set; }
         public string Number { set; get; }
 
     }

@@ -9,5 +9,8 @@ namespace Models
     public class Cart
     {
         public int Id { get; set; }
+        public virtual ICollection<CartProduct> Products {  get; set; }
+
+        
     }
 }

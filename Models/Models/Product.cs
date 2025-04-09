@@ -14,9 +14,14 @@ namespace Models
         public string Description { get; set; }
         public int Quantity { get; set; }
         public int CategoryId { get; set; }
-        public decimal Rate {  get; set; }
+        public virtual Category Category {  get; set; }
+        public decimal? Rate {  get; set; }
+        public virtual ICollection<CartProduct> Carts { get; set; }
+        public virtual ICollection<OrderedProduct> Orders {  get; set; }
+        public virtual ICollection<Review> Reviews {  get; set; }
 
 
 
     }
+
 }
