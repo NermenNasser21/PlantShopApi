@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,9 +20,19 @@ namespace Models
         public string? Note { get; set; }
         public decimal OrderPrice { get; set; }
         public string UserId { get; set; }
-        public virtual User User {  get; set; }
-        public virtual ICollection<OrderedProduct> Products {  get; set; }
+        public virtual User User { get; set; }
+        public virtual ICollection<OrderedProduct> Products { get; set; }
 
 
+    }
+
+    public class OrderConfiguration : IEntityTypeConfiguration<Order>
+    {
+        public void Configure(EntityTypeBuilder<Order> builder)
+        {
+            builder.HasOne(b => b.User)
+                   .WithMany(ub => ub.Orders)
+                   .HasForeignKey(b => b.UserId);
+        }
     }
 }
