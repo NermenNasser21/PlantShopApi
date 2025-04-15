@@ -5,7 +5,9 @@ VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantShopApi", "PlantShopApi\PlantShopApi.csproj", "{9182D5E4-4E28-49E1-B3F2-5AF647CDC18E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{81628F61-65B0-4819-B2B5-EF350C65DBF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{81628F61-65B0-4819-B2B5-EF350C65DBF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfraStructure", "InfraStructure\InfraStructure.csproj", "{A2FEAA3F-DC1C-4758-9347-1C17BC612DD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{81628F61-65B0-4819-B2B5-EF350C65DBF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81628F61-65B0-4819-B2B5-EF350C65DBF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81628F61-65B0-4819-B2B5-EF350C65DBF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2FEAA3F-DC1C-4758-9347-1C17BC612DD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2FEAA3F-DC1C-4758-9347-1C17BC612DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2FEAA3F-DC1C-4758-9347-1C17BC612DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2FEAA3F-DC1C-4758-9347-1C17BC612DD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
