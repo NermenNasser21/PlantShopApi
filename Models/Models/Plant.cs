@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Product
+    public class Plant
     {
         public int Id { get; set; }
         public decimal Price { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int Quantity { get; set; }
+
         public int CategoryId { get; set; }
         public virtual Category Category {  get; set; }
         public decimal? Rate {  get; set; }
@@ -25,9 +26,9 @@ namespace Models
 
 
     }
-    public class ProductConfiguration : IEntityTypeConfiguration<Product>
+    public class ProductConfiguration : IEntityTypeConfiguration<Plant>
     {
-        public void Configure(EntityTypeBuilder<Product> builder)
+        public void Configure(EntityTypeBuilder<Plant> builder)
         {
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Quantity)
