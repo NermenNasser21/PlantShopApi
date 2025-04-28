@@ -14,6 +14,12 @@ namespace Models
             Wallet
         }
 
-        
+        public enum orderStatus
+        {
+            Pending,
+            Delivering,
+            Canceled,
+            Completed
+        }
     }
 }
