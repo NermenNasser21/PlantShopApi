@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Product
+    public class Plant
     {
         public int Id { get; set; }
         public decimal Price { get; set; }
@@ -18,6 +18,12 @@ namespace Models
         public int CategoryId { get; set; }
         public virtual Category Category {  get; set; }
         public decimal? Rate {  get; set; }
+        public string? LightAndHeat { get; set; }
+        public string? Irrigation { get; set; }
+        public string? Reproduction { get; set; }
+        public string? Fertilizers { get; set; }
+        public string? Image { get; set; }
+
         public virtual ICollection<CartProduct> Carts { get; set; }
         public virtual ICollection<OrderedProduct> Orders {  get; set; }
         public virtual ICollection<Review> Reviews {  get; set; }
@@ -25,9 +31,9 @@ namespace Models
 
 
     }
-    public class ProductConfiguration : IEntityTypeConfiguration<Product>
+    public class ProductConfiguration : IEntityTypeConfiguration<Plant>
     {
-        public void Configure(EntityTypeBuilder<Product> builder)
+        public void Configure(EntityTypeBuilder<Plant> builder)
         {
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Quantity)

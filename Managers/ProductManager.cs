@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Managers
 {
-    public class ProductManager : MainManager<Product>
+    public class ProductManager : MainManager<Plant>
     {
         public ProductManager(PlantContext _context) : base(_context)
         {

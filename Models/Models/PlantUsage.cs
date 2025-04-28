@@ -4,15 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace Models.Models
 {
-    public class Enums
+    public class PlantUsage
     {
-        public enum PaymentWays
-        {
-            Cash,
-            Wallet
-        }
+        public int Id { get; set; }
+        public string Name { get; set; }
 
     }
 }
