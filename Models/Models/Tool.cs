@@ -19,6 +19,10 @@ namespace Models.Models
         public string? Image { get; set; }
         public int ToolUsageId { get; set; }
         public virtual ToolUsage ToolUsage { get; set; }
+
+        public virtual ICollection<CartProduct> Carts { get; set; }
+        public virtual ICollection<OrderedProduct> Orders { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 
     public class ToolConfiguration : IEntityTypeConfiguration<Tool>

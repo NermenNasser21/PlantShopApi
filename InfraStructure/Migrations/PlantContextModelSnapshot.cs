@@ -182,40 +182,24 @@ namespace InfraStructure.Migrations
                     b.Property<int?>("CartId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
+                    b.Property<int?>("PlantId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ToolId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CartId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("PlantId");
 
-                    b.ToTable("CartProduct");
-                });
+                    b.HasIndex("ToolId");
 
-            modelBuilder.Entity("Models.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Icon")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
+                    b.ToTable("CartProducts");
                 });
 
             modelBuilder.Entity("Models.DelivaryDetails", b =>
@@ -236,6 +220,220 @@ namespace InfraStructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DelivaryDetails");
+                });
+
+            modelBuilder.Entity("Models.Models.PlantEnvironment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PlantEnvironments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "النباتات الداخلية"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "النباتات الخارجية"
+                        });
+                });
+
+            modelBuilder.Entity("Models.Models.PlantGrowth", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PlantGrowths");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "أشجار"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "شجيرات"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "أزهار"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = " النباتات المتسلقة"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = " النباتات الزاحفة"
+                        });
+                });
+
+            modelBuilder.Entity("Models.Models.PlantUsage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PlantUsages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "نباتات عطرية"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "نباتات طبية"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "نباتات زينة"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = " خضر"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = " فاكهة"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "حبوب"
+                        });
+                });
+
+            modelBuilder.Entity("Models.Models.Tool", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("Rate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ToolUsageId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ToolUsageId");
+
+                    b.ToTable("Tools");
+                });
+
+            modelBuilder.Entity("Models.Models.ToolUsage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ToolUsages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "أسمدة"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "أصص"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "أدوات الحماية"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "أدوات الري"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "أدوات الحفر"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "أدوات التقليم"
+                        });
                 });
 
             modelBuilder.Entity("Models.Order", b =>
@@ -269,11 +467,14 @@ namespace InfraStructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("status")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Models.OrderedProduct", b =>
@@ -287,19 +488,24 @@ namespace InfraStructure.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int?>("PlantId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ToolId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("PlantId");
 
-                    b.ToTable("OrderedProduct");
+                    b.HasIndex("ToolId");
+
+                    b.ToTable("OrderedProducts");
                 });
 
             modelBuilder.Entity("Models.PhoneNumber", b =>
@@ -322,10 +528,10 @@ namespace InfraStructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("PhoneNumber");
+                    b.ToTable("PhoneNumbers");
                 });
 
-            modelBuilder.Entity("Models.Product", b =>
+            modelBuilder.Entity("Models.Plant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -333,13 +539,28 @@ namespace InfraStructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("EnvironmentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Fertilizers")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("GrowthId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Irrigation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LightAndHeat")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -355,11 +576,21 @@ namespace InfraStructure.Migrations
                     b.Property<decimal?>("Rate")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("Reproduction")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UsageId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("EnvironmentId");
 
-                    b.ToTable("Products");
+                    b.HasIndex("GrowthId");
+
+                    b.HasIndex("UsageId");
+
+                    b.ToTable("Plants");
                 });
 
             modelBuilder.Entity("Models.Review", b =>
@@ -379,6 +610,9 @@ namespace InfraStructure.Migrations
                     b.Property<int?>("Rate")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ToolId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -387,9 +621,11 @@ namespace InfraStructure.Migrations
 
                     b.HasIndex("ProductId");
 
+                    b.HasIndex("ToolId");
+
                     b.HasIndex("UserId");
 
-                    b.ToTable("Review");
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Models.User", b =>
@@ -544,13 +780,30 @@ namespace InfraStructure.Migrations
                         .WithMany("Products")
                         .HasForeignKey("CartId");
 
-                    b.HasOne("Models.Product", "Product")
+                    b.HasOne("Models.Plant", "Plant")
                         .WithMany("Carts")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("PlantId");
+
+                    b.HasOne("Models.Models.Tool", "Tool")
+                        .WithMany("Carts")
+                        .HasForeignKey("ToolId");
 
                     b.Navigation("Cart");
 
-                    b.Navigation("Product");
+                    b.Navigation("Plant");
+
+                    b.Navigation("Tool");
+                });
+
+            modelBuilder.Entity("Models.Models.Tool", b =>
+                {
+                    b.HasOne("Models.Models.ToolUsage", "ToolUsage")
+                        .WithMany("Tools")
+                        .HasForeignKey("ToolUsageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ToolUsage");
                 });
 
             modelBuilder.Entity("Models.Order", b =>
@@ -572,15 +825,19 @@ namespace InfraStructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.Product", "Product")
+                    b.HasOne("Models.Plant", "Plant")
                         .WithMany("Orders")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PlantId");
+
+                    b.HasOne("Models.Models.Tool", "Tool")
+                        .WithMany("Orders")
+                        .HasForeignKey("ToolId");
 
                     b.Navigation("Order");
 
-                    b.Navigation("Product");
+                    b.Navigation("Plant");
+
+                    b.Navigation("Tool");
                 });
 
             modelBuilder.Entity("Models.PhoneNumber", b =>
@@ -594,24 +851,44 @@ namespace InfraStructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Models.Product", b =>
+            modelBuilder.Entity("Models.Plant", b =>
                 {
-                    b.HasOne("Models.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
+                    b.HasOne("Models.Models.PlantEnvironment", "Environment")
+                        .WithMany("Plants")
+                        .HasForeignKey("EnvironmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
+                    b.HasOne("Models.Models.PlantGrowth", "Growth")
+                        .WithMany("Plants")
+                        .HasForeignKey("GrowthId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Models.PlantUsage", "Usage")
+                        .WithMany("Plants")
+                        .HasForeignKey("UsageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Environment");
+
+                    b.Navigation("Growth");
+
+                    b.Navigation("Usage");
                 });
 
             modelBuilder.Entity("Models.Review", b =>
                 {
-                    b.HasOne("Models.Product", "Product")
+                    b.HasOne("Models.Plant", "Product")
                         .WithMany("Reviews")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Models.Models.Tool", null)
+                        .WithMany("Reviews")
+                        .HasForeignKey("ToolId");
 
                     b.HasOne("Models.User", "User")
                         .WithMany("Reviews")
@@ -641,9 +918,33 @@ namespace InfraStructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Models.Category", b =>
+            modelBuilder.Entity("Models.Models.PlantEnvironment", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("Plants");
+                });
+
+            modelBuilder.Entity("Models.Models.PlantGrowth", b =>
+                {
+                    b.Navigation("Plants");
+                });
+
+            modelBuilder.Entity("Models.Models.PlantUsage", b =>
+                {
+                    b.Navigation("Plants");
+                });
+
+            modelBuilder.Entity("Models.Models.Tool", b =>
+                {
+                    b.Navigation("Carts");
+
+                    b.Navigation("Orders");
+
+                    b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("Models.Models.ToolUsage", b =>
+                {
+                    b.Navigation("Tools");
                 });
 
             modelBuilder.Entity("Models.Order", b =>
@@ -651,7 +952,7 @@ namespace InfraStructure.Migrations
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("Models.Product", b =>
+            modelBuilder.Entity("Models.Plant", b =>
                 {
                     b.Navigation("Carts");
 

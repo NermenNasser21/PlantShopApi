@@ -40,7 +40,7 @@ namespace Models
 
 
     }
-    public class ProductConfiguration : IEntityTypeConfiguration<Plant>
+    public class PlantConfiguration : IEntityTypeConfiguration<Plant>
     {
         public void Configure(EntityTypeBuilder<Plant> builder)
         {
@@ -67,6 +67,8 @@ namespace Models
             builder.HasOne(b => b.Growth)
                 .WithMany(b => b.Plants)
                 .HasForeignKey(b => b.GrowthId);
+
+            
 
 
         }

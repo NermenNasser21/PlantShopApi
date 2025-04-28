@@ -20,7 +20,6 @@ builder.Services.AddControllers();
 //Add Your Manager 
 builder.Services.AddScoped<CartManager>();
 builder.Services.AddScoped<CartProductManager>();
-builder.Services.AddScoped<CategoryManager>();
 builder.Services.AddScoped<DelivaryDetailsManager>();
 builder.Services.AddScoped<OrderedProductManager>();
 builder.Services.AddScoped<OrderManager>();
@@ -28,6 +27,8 @@ builder.Services.AddScoped<PhoneNumberManager>();
 builder.Services.AddScoped<ProductManager>();
 builder.Services.AddScoped<ReviewManager>();
 builder.Services.AddScoped<TokenManager>();
+builder.Services.AddScoped<AccountManager>();
+
 
 
 

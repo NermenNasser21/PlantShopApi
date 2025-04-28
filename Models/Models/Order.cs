@@ -14,6 +14,7 @@ namespace Models
     {
         public int Id { get; set; }
         public PaymentWays PaymentWay { get; set; }
+        public orderStatus status {  get; set; }
         public decimal DeliveryPrice { get; set; }
         public string? Picture { get; set; }
         public string City { get; set; }
