@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Models.Models;
 
 namespace Models
 {
@@ -16,8 +17,15 @@ namespace Models
         public string Description { get; set; }
         public int Quantity { get; set; }
 
-        public int CategoryId { get; set; }
-        public virtual Category Category {  get; set; }
+        public int UsageId { get; set; }
+        public virtual PlantUsage Usage {  get; set; }
+
+        public int GrowthId { get; set; }
+        public virtual PlantGrowth Growth { get; set; }
+
+        public int EnvironmentId { get; set; }
+        public virtual PlantEnvironment Environment { get; set; }
+
         public decimal? Rate {  get; set; }
         public string? LightAndHeat { get; set; }
         public string? Irrigation { get; set; }
@@ -48,11 +56,19 @@ namespace Models
             builder.Property(b => b.Price)
                .IsRequired();
 
-            builder.HasOne(b => b.Category)
-                .WithMany(b => b.Products)
-                .HasForeignKey(b => b.CategoryId);
+            builder.HasOne(b => b.Environment)
+                .WithMany(b => b.Plants)
+                .HasForeignKey(b => b.EnvironmentId);
 
-            
+            builder.HasOne(b => b.Usage)
+                .WithMany(b => b.Plants)
+                .HasForeignKey(b => b.UsageId);
+
+            builder.HasOne(b => b.Growth)
+                .WithMany(b => b.Plants)
+                .HasForeignKey(b => b.GrowthId);
+
+
         }
     }
 
