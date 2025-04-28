@@ -19,6 +19,12 @@ namespace Models
         public int CategoryId { get; set; }
         public virtual Category Category {  get; set; }
         public decimal? Rate {  get; set; }
+        public string? LightAndHeat { get; set; }
+        public string? Irrigation { get; set; }
+        public string? Reproduction { get; set; }
+        public string? Fertilizers { get; set; }
+        public string? Image { get; set; }
+
         public virtual ICollection<CartProduct> Carts { get; set; }
         public virtual ICollection<OrderedProduct> Orders {  get; set; }
         public virtual ICollection<Review> Reviews {  get; set; }
