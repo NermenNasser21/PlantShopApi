@@ -50,6 +50,15 @@ namespace InfraStructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            ConcurrencyStamp = "static-value-123",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -288,12 +297,12 @@ namespace InfraStructure.Migrations
                         new
                         {
                             Id = 4,
-                            Name = " النباتات المتسلقة"
+                            Name = "النباتات المتسلقة"
                         },
                         new
                         {
                             Id = 5,
-                            Name = " النباتات الزاحفة"
+                            Name = "النباتات الزاحفة"
                         });
                 });
 
@@ -332,12 +341,12 @@ namespace InfraStructure.Migrations
                         new
                         {
                             Id = 4,
-                            Name = " خضر"
+                            Name = "خضر"
                         },
                         new
                         {
                             Id = 5,
-                            Name = " فاكهة"
+                            Name = "فاكهة"
                         },
                         new
                         {

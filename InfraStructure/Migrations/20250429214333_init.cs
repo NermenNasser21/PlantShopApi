@@ -459,6 +459,11 @@ namespace InfraStructure.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "1", "static-value-123", "User", "USER" });
+
+            migrationBuilder.InsertData(
                 table: "PlantEnvironments",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
@@ -475,8 +480,8 @@ namespace InfraStructure.Migrations
                     { 1, "أشجار" },
                     { 2, "شجيرات" },
                     { 3, "أزهار" },
-                    { 4, " النباتات المتسلقة" },
-                    { 5, " النباتات الزاحفة" }
+                    { 4, "النباتات المتسلقة" },
+                    { 5, "النباتات الزاحفة" }
                 });
 
             migrationBuilder.InsertData(
@@ -487,8 +492,8 @@ namespace InfraStructure.Migrations
                     { 1, "نباتات عطرية" },
                     { 2, "نباتات طبية" },
                     { 3, "نباتات زينة" },
-                    { 4, " خضر" },
-                    { 5, " فاكهة" },
+                    { 4, "خضر" },
+                    { 5, "فاكهة" },
                     { 6, "حبوب" }
                 });
 

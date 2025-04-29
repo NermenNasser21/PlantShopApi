@@ -29,11 +29,11 @@ namespace Managers
         {
             try
             {
-                //var existingUser = await userManager.FindByEmailAsync(model.Email);
-                //if (existingUser != null)
-                //{
-                //    return IdentityResult.Failed(new IdentityError { Description = "Email is already taken." });
-                //}
+                var existingUser = await userManager.FindByEmailAsync(model.Email);
+                if (existingUser != null)
+                {
+                    return IdentityResult.Failed(new IdentityError { Description = "Email is already taken." });
+                }
 
                 var user = model.ToModel();
                 var createResult = await userManager.CreateAsync(user, model.Password);
