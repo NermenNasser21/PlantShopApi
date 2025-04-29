@@ -31,7 +31,7 @@ namespace Managers
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim(ClaimTypes.Email, user.Email??"not have email"),
-            new Claim(ClaimTypes.Name,user.FirstName+user.LastName),
+            new Claim(ClaimTypes.Name,user.Name),
         };
             var roles = await userManager.GetRolesAsync(user);
             foreach (var role in roles)

@@ -11,12 +11,7 @@ namespace Models
 {
     public class User :IdentityUser
     {
-        public string Id { get; set; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public string? UserName {  get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
+        public string? Name {  get; set; }
         public string? Bio { get; set; }
         public string? Image { get; set; }
         public string? City { get; set; }
@@ -36,13 +31,8 @@ namespace Models
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasKey(b => b.Id);
+            
 
-            builder.Property(b => b.Password)
-                .IsRequired();
-
-            builder.Property(b => b.Email)
-                .IsRequired();
 
             builder.HasOne(b => b.Cart)
                   .WithOne(ub => ub.User)
