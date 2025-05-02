@@ -20,6 +20,7 @@ namespace Models
         public string City { get; set; }
         public string? Note { get; set; }
         public decimal OrderPrice { get; set; }
+        public DateTime Time {  get; set; }
         public string UserId { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<OrderedProduct> Products { get; set; }
@@ -34,6 +35,9 @@ namespace Models
             builder.HasOne(b => b.User)
                    .WithMany(ub => ub.Orders)
                    .HasForeignKey(b => b.UserId);
+
+            builder.Property(i => i.status).IsRequired().HasDefaultValue(orderStatus.Pending);
+
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ViewModels.Account
+namespace ViewModels
 {
     public static class AccountExtensions
     {

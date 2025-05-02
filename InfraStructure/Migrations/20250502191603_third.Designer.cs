@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfraStructure.Migrations
 {
     [DbContext(typeof(PlantContext))]
-    [Migration("20250429214333_init")]
-    partial class init
+    [Migration("20250502191603_third")]
+    partial class third
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -202,6 +202,9 @@ namespace InfraStructure.Migrations
 
                     b.Property<int?>("ToolId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("selected")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -475,12 +478,17 @@ namespace InfraStructure.Migrations
                     b.Property<string>("Picture")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("status")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.HasKey("Id");
 
@@ -497,7 +505,7 @@ namespace InfraStructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<int?>("PlantId")
@@ -616,7 +624,7 @@ namespace InfraStructure.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int?>("PlantId")
                         .HasColumnType("int");
 
                     b.Property<int?>("Rate")
@@ -631,7 +639,7 @@ namespace InfraStructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("PlantId");
 
                     b.HasIndex("ToolId");
 
@@ -825,9 +833,7 @@ namespace InfraStructure.Migrations
                 {
                     b.HasOne("Models.Order", "Order")
                         .WithMany("Products")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("Models.Plant", "Plant")
                         .WithMany("Orders")
@@ -884,13 +890,11 @@ namespace InfraStructure.Migrations
 
             modelBuilder.Entity("Models.Review", b =>
                 {
-                    b.HasOne("Models.Plant", "Product")
+                    b.HasOne("Models.Plant", "Plant")
                         .WithMany("Reviews")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PlantId");
 
-                    b.HasOne("Models.Models.Tool", null)
+                    b.HasOne("Models.Models.Tool", "Tool")
                         .WithMany("Reviews")
                         .HasForeignKey("ToolId");
 
@@ -900,7 +904,9 @@ namespace InfraStructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Product");
+                    b.Navigation("Plant");
+
+                    b.Navigation("Tool");
 
                     b.Navigation("User");
                 });

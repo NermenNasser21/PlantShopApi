@@ -399,10 +399,10 @@ namespace InfraStructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    PlantId = table.Column<int>(type: "int", nullable: true),
+                    ToolId = table.Column<int>(type: "int", nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Rate = table.Column<int>(type: "int", nullable: true),
-                    ToolId = table.Column<int>(type: "int", nullable: true)
+                    Rate = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -414,11 +414,10 @@ namespace InfraStructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Reviews_Plants_ProductId",
-                        column: x => x.ProductId,
+                        name: "FK_Reviews_Plants_PlantId",
+                        column: x => x.PlantId,
                         principalTable: "Plants",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Reviews_Tools_ToolId",
                         column: x => x.ToolId,
@@ -434,7 +433,7 @@ namespace InfraStructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PlantId = table.Column<int>(type: "int", nullable: true),
                     ToolId = table.Column<int>(type: "int", nullable: true),
-                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: true),
                     Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -444,8 +443,7 @@ namespace InfraStructure.Migrations
                         name: "FK_OrderedProducts_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_OrderedProducts_Plants_PlantId",
                         column: x => x.PlantId,
@@ -612,9 +610,9 @@ namespace InfraStructure.Migrations
                 column: "UsageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reviews_ProductId",
+                name: "IX_Reviews_PlantId",
                 table: "Reviews",
-                column: "ProductId");
+                column: "PlantId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_ToolId",

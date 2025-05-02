@@ -17,7 +17,7 @@ namespace Models
         public int? ToolId { get; set; }
         public virtual Tool Tool { get; set; }
 
-        public int OrderId { get; set; }
+        public int? OrderId { get; set; }
         public virtual Order Order { get; set; }
         public int Quantity{ get; set; }
 

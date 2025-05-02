@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Models;
-using ViewModels.Account;
+using ViewModels;
 
-namespace PlantShopApi.Controllers
+namespace PlantShopApi
 {
     [Route("api/[controller]")]
     [ApiController]

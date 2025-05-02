@@ -19,6 +19,7 @@ namespace Models
         public int? CartId { get; set; }
         public virtual Cart Cart { get; set; }
         public int Quantity { get; set; }
+        public bool selected { get; set; } = false;
     }
     public class CartProductConfiguration : IEntityTypeConfiguration<CartProduct>
     {
