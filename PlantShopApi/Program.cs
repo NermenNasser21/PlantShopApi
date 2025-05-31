@@ -28,6 +28,9 @@ builder.Services.AddScoped<ProductManager>();
 builder.Services.AddScoped<ReviewManager>();
 builder.Services.AddScoped<TokenManager>();
 builder.Services.AddScoped<AccountManager>();
+builder.Services.AddScoped<PlantGrowthMangaer>();
+builder.Services.AddScoped<PhoneNumberManager>();
+
 
 
 

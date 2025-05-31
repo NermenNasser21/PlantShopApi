@@ -14,11 +14,13 @@ namespace ViewModels
         public PaymentWays PaymentWay { get; set; }
         public decimal DeliveryPrice { get; set; }
         public IFormFile? Picture { get; set; }
-        public string? PictureUrl { get; set; }
         public string City { get; set; }
         public string? Note { get; set; }
         public decimal OrderPrice { get; set; }
-        public string UserId { get; set; }
-        public int CartId {  get; set; }
+        public string? UserId { get; set; }
+        public int? CartId {  get; set; }
+        
+
+        
     }
 }

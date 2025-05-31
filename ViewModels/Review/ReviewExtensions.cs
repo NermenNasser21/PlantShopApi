@@ -14,7 +14,7 @@ namespace ViewModels
 
             return new Review
             {
-                PlantId = model.PlantId,
+                PlantId =model.PlantId,
                 ToolId = model.ToolId,
                 Rate = model.Rate,
                 Comment = model.Comment,

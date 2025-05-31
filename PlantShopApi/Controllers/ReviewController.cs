@@ -14,6 +14,7 @@ namespace PlantShopApi
         private AccountManager accountMangaer;
         private ReviewManager reviewMangaer;
         private CartManager cartManager;
+        
 
         public ReviewController(ReviewManager _reviewMangaer, CartManager _cartManager,AccountManager _accountManager)
         {
@@ -22,14 +23,15 @@ namespace PlantShopApi
             accountMangaer = _accountManager;
         }
 
-        [HttpPost("Add")]
-        public async Task<IActionResult> Add(AddReviewViewModel model)
+        [HttpPost("AddPlantReview")]
+        public async Task<IActionResult> AddPlantReview(AddReviewViewModel model)
         {
            
                 if (!ModelState.IsValid) BadRequest(new { Message = "This Data Is Not Completed" });
                 var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 if (userid == null) BadRequest(new { Message = "can not find the current user" });
                 model.UserId = userid;
+                
                 var res = await reviewMangaer.Add(model.ToModel());
                 if (!res) BadRequest(new { Message = "error occured while Adding review" });
                 return Ok();
@@ -37,12 +39,17 @@ namespace PlantShopApi
              
         }
 
+
+
         //[HttpGet("PlantReviews/{Id}")]
         //public Task<IActionResult> GetPlantReviews(int Id)
         //{
-            
+        //    var Plant = 
+
 
 
         //}
+
+
     }
 }
