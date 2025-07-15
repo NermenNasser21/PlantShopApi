@@ -23,11 +23,11 @@ namespace PlantShopApi
         }
 
         [HttpGet("GetAll")]
-        public IQueryable<PlantUsage> GetAll()
+        public async Task<IActionResult>  GetAll()
         {
-            var result =  PlantUsageManager.GetAll();
+            var result =  PlantUsageManager.GetAll().ToList();
     
-            return result;
+            return Ok(result);
         }
             
         

@@ -30,6 +30,9 @@ builder.Services.AddScoped<TokenManager>();
 builder.Services.AddScoped<AccountManager>();
 builder.Services.AddScoped<PlantGrowthMangaer>();
 builder.Services.AddScoped<PhoneNumberManager>();
+builder.Services.AddScoped<PlantUsageManager>();
+builder.Services.AddScoped<ToolUsageManager>();
+
 
 
 

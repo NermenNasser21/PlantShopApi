@@ -22,12 +22,12 @@ namespace PlantShopApi
             ToolUsageManager = _ToolUsageManager;
         }
 
-        [HttpGet("GetAll")]
-        public IQueryable<ToolUsage> GetAll()
+      [HttpGet("GetAll")]
+        public async Task<IActionResult>  GetAll()
         {
-            var result =  ToolUsageManager.GetAll();
+            var result =  ToolUsageManager.GetAll().ToList();
     
-            return result;
+            return Ok(result);
         }
             
         
