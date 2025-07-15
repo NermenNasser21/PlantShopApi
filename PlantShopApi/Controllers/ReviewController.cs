@@ -40,16 +40,48 @@ namespace PlantShopApi
         }
 
 
+        [HttpGet("AllReviews")]
+        public async Task<IActionResult> GetAllReviews()
+        {
 
-        //[HttpGet("PlantReviews/{Id}")]
-        //public Task<IActionResult> GetPlantReviews(int Id)
-        //{
-        //    var Plant = 
+            var AllReviews = reviewMangaer.GetAll().ToList();
+            if (AllReviews.Count == 0)
+            {
+                return BadRequest(new { Message = "There is no reviews yet. " });
+            }
+            return Ok(AllReviews);
 
 
+        }
 
-        //}
+        [HttpGet("PlantReviews/{Id}")]
+        public async Task<IActionResult> GetPlantReviews(int Id)
+        {
 
+            var PlantReviews = reviewMangaer.GetAll().Where(r => r.PlantId == Id).ToList();
+            if(PlantReviews.Count==0)
+            {
+               return BadRequest(new { Message = "There is no reviews for that item. " });
+            }
+            return Ok(PlantReviews);
+
+
+        }
+
+
+        [HttpGet("ToolReviews/{Id}")]
+        public async Task<IActionResult> GetToolReviews(int Id)
+        {
+
+            var ToolReviews = reviewMangaer.GetAll().Where(r => r.ToolId == Id).ToList();
+            if (ToolReviews.Count == 0)
+            {
+                return BadRequest(new { Message = "There is no reviews for that item. " });
+            }
+            return Ok(ToolReviews);
+
+
+        }
 
     }
 }

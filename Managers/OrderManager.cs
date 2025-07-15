@@ -21,19 +21,21 @@ namespace Managers
         public async Task<bool> Add(AddOrderViewModel model)
         {
             Order Order = model.ToModel();
+            Order.Products ??= new List<OrderedProduct>();
             Cart cart = await cartManager.GetOne(model.CartId);
-            var cartProducts = cart.Products.Where(p=>p.selected == true).ToList();
+            var SelectedcartProducts = cart.Products.Where(p=>p.selected == true).ToList();
 
 
-            foreach (var product in cartProducts) 
+            foreach (var product in SelectedcartProducts) 
             {
-                Order.Products.Add(new OrderedProduct()
+                Order.Products.Add(new OrderedProduct
                 {
                     PlantId = product.PlantId,
                     ToolId = product.ToolId,
                     Quantity = product.Quantity
-
                 });
+
+               
 
             }
             var res = await base.Add(Order);

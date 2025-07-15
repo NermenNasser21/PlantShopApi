@@ -14,6 +14,7 @@ namespace Models.Models
         public string Name { get; set; }
 
         public virtual ICollection<Plant> Plants { get; set; }
+
     }
     public class PlantGrowthConfiguration : IEntityTypeConfiguration<PlantGrowth>
     {

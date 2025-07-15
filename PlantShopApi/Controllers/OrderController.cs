@@ -1,4 +1,5 @@
 ﻿using Managers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using ViewModels;
@@ -18,7 +19,7 @@ namespace PlantShopApi
             orderManager = _orderManager;
 
         }
-
+        [Authorize]
         [HttpPost("Add")]
         public async Task<IActionResult> AddOrder(AddOrderViewModel model)
         {
@@ -27,9 +28,8 @@ namespace PlantShopApi
             if (UserId == null) BadRequest(new { Message = "Can not find the current User" });
             model.UserId = UserId;
             var user = await accountManager.UserManager.FindByIdAsync(UserId);
-            var Cart = user.Cart;
-            if (Cart == null) BadRequest(new { Message = "there is not cart for this user" });
-            model.CartId = Cart.Id;
+ 
+            model.CartId = user.CartId;
             var res = await orderManager.Add(model);
             if (!res) BadRequest(new { Message = "there is not cart for this user" });
             return Ok();
