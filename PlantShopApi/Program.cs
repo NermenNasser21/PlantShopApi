@@ -84,7 +84,7 @@ builder.Services.AddAuthentication(options =>
     
 });
 
-
+builder.WebHost.UseUrls("http://localhost:5161", "https://localhost:7161");
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

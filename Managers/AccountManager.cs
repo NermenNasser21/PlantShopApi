@@ -14,13 +14,15 @@ namespace Managers
     public class AccountManager : MainManager<User>
     {
         private UserManager<User> userManager;
+        private CartManager cartManager;
         private SignInManager<User> signInManager;
         private readonly TokenManager tokenManager;
-        public AccountManager(PlantContext _context,UserManager<User> _userManager,SignInManager<User> _signInManager,TokenManager _tokenManager) : base(_context)
+        public AccountManager(PlantContext _context,UserManager<User> _userManager,SignInManager<User> _signInManager,TokenManager _tokenManager,CartManager _cartManager) : base(_context)
         {
             userManager = _userManager;
             signInManager = _signInManager;
             tokenManager = _tokenManager;
+            cartManager = _cartManager;
 
         }
         public UserManager<User> UserManager => userManager;
@@ -36,6 +38,9 @@ namespace Managers
                 }
 
                 var user = model.ToModel();
+                var cart = new Cart();
+                var cartCreationRes = await cartManager.Add(cart);
+                user.CartId = cart.Id;
                 var createResult = await userManager.CreateAsync(user, model.Password);
 
                 if (!createResult.Succeeded)
@@ -43,7 +48,10 @@ namespace Managers
                     return createResult; // Return the errors from creating the user
                 }
 
+                
                 var roleResult = await userManager.AddToRoleAsync(user, "user");
+                
+
                 return roleResult;
             }
             catch (Exception ex)
